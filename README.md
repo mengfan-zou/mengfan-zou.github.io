@@ -11,4 +11,4 @@ This is my personal academic and professional portfolio website.
 
 ## Website
 
-https://mengfanzou.github.io
+https://mengfan-zou.github.io/
