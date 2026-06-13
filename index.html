@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mengfan Zou | Portafolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    :root {
+      --bg: #fbfaf8;
+      --card: #ffffff;
+      --text: #222222;
+      --muted: #666666;
+      --line: #ded8cf;
+      --accent: #7a4f2f;
+      --accent-dark: #3f2a1d;
+      --soft: #f1ebe4;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover { text-decoration: underline; }
+
+    .container {
+      width: min(1080px, 92%);
+      margin: 0 auto;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(251, 250, 248, 0.95);
+      border-bottom: 1px solid var(--line);
+      z-index: 10;
+    }
+
+    .nav-inner {
+      min-height: 66px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      font-weight: 700;
+      color: var(--accent-dark);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      font-size: 14px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a { color: var(--text); }
+
+    .cv-button {
+      border: 1px solid var(--accent);
+      border-radius: 999px;
+      padding: 6px 12px;
+      color: var(--accent) !important;
+    }
+
+    header { padding: 80px 0 60px; }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 44px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 13px;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 7vw, 68px);
+      line-height: 1.05;
+      margin: 0 0 18px;
+      color: var(--accent-dark);
+      letter-spacing: -0.04em;
+    }
+
+    .subtitle {
+      font-size: 22px;
+      color: #3a332e;
+      margin-bottom: 22px;
+    }
+
+    .intro {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 760px;
+    }
+
+    .actions {
+      margin-top: 28px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 11px 18px;
+      border: 1px solid var(--accent);
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .button.primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .button.secondary { color: var(--accent); }
+
+    .profile-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 26px;
+      box-shadow: 0 14px 32px rgba(0,0,0,0.06);
+    }
+
+    .initials {
+      width: 104px;
+      height: 104px;
+      border-radius: 50%;
+      background: var(--soft);
+      color: var(--accent-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 34px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .profile-card h3 {
+      margin: 0 0 10px;
+      color: var(--accent-dark);
+    }
+
+    .profile-card p {
+      margin: 8px 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    section {
+      padding: 54px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-title {
+      display: grid;
+      grid-template-columns: 0.35fr 1fr;
+      gap: 34px;
+      margin-bottom: 28px;
+    }
+
+    h2 {
+      margin: 0;
+      color: var(--accent-dark);
+      font-size: 34px;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+    }
+
+    .section-note {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .tags {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .tag {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      color: var(--accent-dark);
+      padding: 7px 11px;
+      border-radius: 999px;
+      font-size: 14px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card, .publication {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 22px;
+    }
+
+    .card h3, .publication h3 {
+      margin: 0 0 10px;
+      color: var(--accent-dark);
+      line-height: 1.32;
+    }
+
+    .card p, .publication p {
+      margin: 6px 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .meta {
+      margin-top: 14px;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .pub-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .pub-type {
+      display: inline-block;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .work-item {
+      display: grid;
+      grid-template-columns: 0.3fr 1fr;
+      gap: 24px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .work-item:last-child { border-bottom: 0; }
+
+    .work-time {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .work-item h3 {
+      margin: 0 0 8px;
+      color: var(--accent-dark);
+    }
+
+    .work-item p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .timeline {
+      border-left: 2px solid var(--line);
+      padding-left: 24px;
+    }
+
+    .timeline-item {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px 20px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .timeline-item:before {
+      content: "";
+      position: absolute;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: var(--accent);
+      left: -32px;
+      top: 24px;
+    }
+
+    .year {
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .timeline-item h3 {
+      margin: 0 0 8px;
+      color: var(--accent-dark);
+    }
+
+    .timeline-item p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .contact-box {
+      background: var(--accent-dark);
+      color: white;
+      border-radius: 26px;
+      padding: 34px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 26px;
+    }
+
+    .contact-box h2 { color: white; }
+
+    .contact-box p { color: #eee2d8; }
+
+    .contact-box a {
+      color: white;
+      font-weight: 700;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      padding: 30px 0 44px;
+    }
+
+    @media (max-width: 860px) {
+      .hero,
+      .section-title,
+      .grid,
+      .work-item,
+      .contact-box {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 14px 0;
+      }
+
+      header { padding: 56px 0 42px; }
+
+      section { padding: 42px 0; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="container nav-inner">
+      <a class="brand" href="#">Mengfan Zou</a>
+      <div class="nav-links">
+        <a href="#research">Investigación</a>
+        <a href="#publications">Publicaciones</a>
+        <a href="#projects">Proyectos</a>
+        <a href="#work">Experiencia</a>
+        <a href="#story">Trayectoria</a>
+        <a href="#contact">Contacto</a>
+        <a class="cv-button" href="files/Mengfan_Zou_CV.pdf" target="_blank">CV</a>
+      </div>
+    </div>
+  </nav>
+
+  <header>
+    <div class="container hero">
+      <div>
+        <h1>Hola, soy Mengfan Zou.</h1>
+        <p class="subtitle">
+          Investigo cómo las tecnologías digitales, los videojuegos, las comunidades en línea y la comunicación mediada por IA influyen en la alfabetización, la agencia, la identidad y la participación cultural.
+        </p>
+        <p class="intro">
+          Soy investigadora en comunicación digital, radicada en Madrid, con un doctorado en Comunicación, Información y Tecnología en la Sociedad en Red. Mi trabajo conecta la comunicación digital, los estudios del videojuego, la alfabetización mediática, la desinformación, el género y las comunidades en línea, con especial interés en trasladar la investigación a la educación, la coordinación académica y la estrategia digital.
+        </p>
+        <div class="actions">
+          <a class="button primary" href="#research">Ver investigación</a>
+          <a class="button secondary" href="#projects">Ver proyectos</a>
+          <a class="button secondary" href="files/Mengfan_Zou_CV.pdf" target="_blank">Descargar CV</a>
+        </div>
+      </div>
+
+      <aside class="profile-card">
+        <div class="initials">MZ</div>
+        <p>Madrid, España</p>
+        <p>Comunicación digital, videojuegos, IA y análisis computacional de discursos digitales, alfabetización mediática e identidad.</p>
+        <p><strong>Métodos:</strong> LDA, PCA, VADER, análisis del discurso</p>
+        <p><strong>Idiomas:</strong> mandarín, español e inglés</p>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+
+    <section id="research">
+      <div class="container">
+        <div class="section-title">
+          <h2>Investigación</h2>
+          <div>
+            <p class="section-note">
+              Mi investigación aborda los videojuegos y las plataformas digitales como infraestructuras socioculturales: espacios donde las personas aprenden, negocian identidades, participan en comunidades y construyen agencia.
+            </p>
+            <div class="tags">
+              <span class="tag">Comunicación digital</span>
+              <span class="tag">Estudios del videojuego</span>
+              <span class="tag">IA y análisis computacional de discursos digitales</span>
+              <span class="tag">Alfabetización mediática</span>
+              <span class="tag">Desinformación</span>
+              <span class="tag">Narrativas interactivas</span>
+              <span class="tag">Agencia del jugador</span>
+              <span class="tag">Comunidades en línea</span>
+              <span class="tag">Género e identidad</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <h3>Videojuegos como infraestructuras socioculturales</h3>
+            <p>Examino cómo los videojuegos organizan la participación, la interacción y la construcción de significado mediante narrativas, mecánicas, prácticas de alfabetización y procesos de identidad.</p>
+            <div class="meta">Tesis doctoral · Estudios del videojuego · Comunicación</div>
+          </article>
+
+          <article class="card">
+            <h3>Alfabetización mediática y desinformación</h3>
+            <p>Estudio cómo los entornos basados en juegos pueden apoyar la alfabetización informativa, el razonamiento cívico y el compromiso crítico frente a la desinformación.</p>
+            <div class="meta">Alfabetización informativa · Juegos serios · Razonamiento cívico</div>
+          </article>
+
+          <article class="card">
+            <h3>Género, identidad y comunidades en línea</h3>
+            <p>Analizo cómo las jugadoras y las comunidades en línea articulan preferencias, identidades y contranarrativas en entornos digitales.</p>
+            <div class="meta">Estudios de género · Foros en línea · Análisis del discurso</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="publications">
+      <div class="container">
+        <div class="section-title">
+          <h2>Publicaciones seleccionadas</h2>
+          <p class="section-note">Selección de artículos de revista y capítulos de libro sobre comunicación digital, estudios del videojuego, comunidades en línea, alfabetización mediática y narrativas interactivas.</p>
+        </div>
+
+        <div class="pub-list">
+          <article class="publication">
+            <span class="pub-type">Artículo de revista</span>
+            <h3>Persistence and evolution within interactive design: An integrated approach to ICT innovations in emergent game narratives</h3>
+            <p><strong>Mengfan Zou</strong>, Yuan Meng, Sara Cortés Gómez y Julia Sabina Gutiérrez Sánchez. 2025.</p>
+            <p><em>Technologies, 13(5), 179.</em></p>
+            <p><a href="https://doi.org/10.3390/technologies13050179" target="_blank">DOI: 10.3390/technologies13050179</a></p>
+          </article>
+
+          <article class="publication">
+            <span class="pub-type">Artículo de revista</span>
+            <h3>Invitations Within and Beyond the Fictitious World: An LDA Discourse Analysis of Female Game Preferences in Chinese CMC Forums</h3>
+            <p><strong>Mengfan Zou</strong> y Sara Cortés Gómez. 2024.</p>
+            <p><em>International Journal of Human–Computer Interaction, 41(2), 1042-1053.</em></p>
+            <p><a href="https://doi.org/10.1080/10447318.2024.2309411" target="_blank">DOI: 10.1080/10447318.2024.2309411</a></p>
+          </article>
+
+          <article class="publication">
+            <span class="pub-type">Artículo de revista</span>
+            <h3>Communicative Resilience in Virtual Worlds: Responding to Marginalization through Counter-Narratives</h3>
+            <p><strong>Mengfan Zou</strong> y Sara Cortés Gómez. 2026.</p>
+            <p><em>Partecipazione e Conflitto, 19(1), 114-136.</em></p>
+            <p><a href="https://doi.org/10.1285/i20356609v19i1p114" target="_blank">DOI: 10.1285/i20356609v19i1p114</a></p>
+          </article>
+
+          <article class="publication">
+            <span class="pub-type">Capítulo de libro</span>
+            <h3>Digital Era Empowerment: Leveraging News Literacy against Disinformation Through Connected Gaming</h3>
+            <p><strong>Mengfan Zou</strong> y Sara Cortés Gómez. 2023.</p>
+            <p><em>Disinformation and fact-checking in contemporary society</em>, Editorial Dykinson, Madrid.</p>
+            <p><a href="https://dialnet.unirioja.es/servlet/articulo?codigo=9534301" target="_blank">Dialnet</a></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-title">
+          <h2>Proyectos</h2>
+          <p class="section-note">Selección de proyectos de investigación y experiencia profesional que conectan la producción académica con los medios digitales, la educación, la estrategia comunicativa y el análisis computacional.</p>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <h3>Análisis del diseño narrativo en Animal Crossing</h3>
+            <p>Estudio de métodos mixtos sobre narrativas emergentes, diseño interactivo, agencia del jugador y estructuras mediadas por TIC en la franquicia Animal Crossing.</p>
+            <div class="meta">Narrativa de videojuegos · PCA · VADER · Agencia</div>
+          </article>
+
+          <article class="card">
+            <h3>Discurso de jugadoras en comunidades en línea de China</h3>
+            <p>Análisis basado en LDA de foros de videojuegos orientados a mujeres, identificando patrones de empatía narrativa, preferencia de género, encarnación de personajes y negociación identitaria.</p>
+            <div class="meta">LDA · Estudios de género · Comunidades en línea</div>
+          </article>
+
+          <article class="card">
+            <h3>Alfabetización informativa mediante juegos conectados</h3>
+            <p>Proyecto de marco conceptual sobre cómo los juegos serios pueden apoyar la alfabetización informativa, el razonamiento cívico y la resiliencia frente a la desinformación.</p>
+            <div class="meta">Alfabetización mediática · Desinformación · Juegos serios</div>
+          </article>
+
+          <article class="card">
+            <h3>Diseño curricular y coordinación académica</h3>
+            <p>Coordinación de documentación académica, resultados de aprendizaje, competencias y planes docentes en proyectos de cooperación universitaria entre España y China.</p>
+            <div class="meta">ECTS · MECES 3 · Coordinación académica</div>
+          </article>
+
+          <article class="card">
+            <h3>IA aplicada al análisis del discurso y la comunicación multilingüe</h3>
+            <p>Uso de enfoques computacionales y herramientas de IA para analizar discursos digitales, comunidades en línea y contenido multilingüe, combinando modelado de temas, análisis de sentimiento, evaluación lingüística, alfabetización en IA y supervisión humana responsable.</p>
+            <div class="meta">LDA · Análisis de sentimiento · Evaluación lingüística · Alfabetización en IA</div>
+          </article>
+
+          <article class="card">
+            <h3>Contranarrativas en mundos virtuales</h3>
+            <p>Investigación sobre cómo participantes marginados responden a la exclusión y construyen resiliencia comunicativa mediante el discurso y las contranarrativas.</p>
+            <div class="meta">Identidad · Resiliencia digital · Comunidad</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="work">
+      <div class="container">
+        <div class="section-title">
+          <h2>Experiencia</h2>
+          <p class="section-note">Experiencia en docencia, coordinación académica, cooperación internacional, revisión por pares y comunicación científica en el ámbito universitario.</p>
+        </div>
+
+        <div class="work-item">
+          <div class="work-time">2025 - Presente</div>
+          <div>
+            <h3>Coordinación académica e institucional</h3>
+            <p>Coordinación de la planificación académica, calendarios docentes, secuenciación de módulos, documentación y comunicación entre profesorado, estudiantes, instituciones y entidades colaboradoras de España y China.</p>
+          </div>
+        </div>
+
+        <div class="work-item">
+          <div class="work-time">2025 - Presente</div>
+          <div>
+            <h3>Revisión científica académica</h3>
+            <p>Evaluación por pares para revistas académicas, contribuyendo a la revisión del rigor metodológico, la coherencia teórica, la originalidad y la calidad editorial de los trabajos evaluados.</p>
+          </div>
+        </div>
+
+        <div class="work-item">
+          <div class="work-time">2013 - 2015</div>
+          <div>
+            <h3>Profesora asistente de docencia universitaria · Universidad de Wuhan</h3>
+            <p>Apoyo docente en las asignaturas Historia del Periodismo en China y Comunicación Internacional, incluyendo preparación de contenidos, apoyo en clase, seguimiento académico y evaluación.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="story">
+      <div class="container">
+        <div class="section-title">
+          <h2>Trayectoria</h2>
+          <p class="section-note">Una breve línea de tiempo académica y profesional que conecta periodismo, investigación en comunicación, medios digitales, estudios del videojuego y coordinación académica.</p>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="year">2009 - 2013</div>
+            <h3>Grado en Periodismo · Universidad de Hubei</h3>
+            <p>Formación inicial en periodismo, comunicación, escritura mediática y prácticas de información pública.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="year">2013 - 2015</div>
+            <h3>Máster en Periodismo y Comunicación · Universidad de Wuhan</h3>
+            <p>Ampliación de la formación académica en investigación en comunicación junto con experiencia en docencia universitaria.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="year">2019 - 2026</div>
+            <h3>Doctorado en Comunicación, Información y Tecnología en la Sociedad en Red · Universidad de Alcalá</h3>
+            <p>Desarrollo de una tesis interdisciplinar sobre los videojuegos como infraestructuras socioculturales contemporáneas, centrada en la alfabetización digital, las estructuras narrativas y la construcción de identidad.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="year">2025 - Presente</div>
+            <h3>Coordinación académica, cooperación universitaria y transición hacia IA</h3>
+            <p>Extensión de la experiencia investigadora hacia la coordinación de proyectos académicos, el diseño curricular, la educación mediada por IA, la estrategia de contenidos y la comunicación digital intercultural.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box">
+          <div>
+            <h2>Contacto</h2>
+            <p>Estoy abierta a oportunidades académicas, de investigación y consultoría, especialmente en habilitación de IA, alfabetización en IA, adaptación de contenido multilingüe, comunicación digital y educación.</p>
+          </div>
+          <div>
+            <p><strong>Email:</strong> <a href="mailto:mengfan.zou@edu.uah.es">mengfan.zou@edu.uah.es</a></p>
+            <p><strong>Ubicación:</strong> Madrid, España</p>
+            <p><strong>CV:</strong> <a href="files/Mengfan_Zou_CV.pdf" target="_blank">Descargar CV</a></p>
+            <p><strong>LinkedIn:</strong> <a href="#" target="_blank">Añadir enlace de LinkedIn</a></p>
+            <p><strong>Google Scholar / ORCID:</strong> <a href="#" target="_blank">Añadir perfil académico</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">© 2026 Mengfan Zou. Portafolio académico y profesional.</div>
+  </footer>
+
+</body>
+</html>
